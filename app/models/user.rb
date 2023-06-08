@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_one :posts
-  has_many :comments, through: :posts
-  has_many :likes, through: :posts
+  has_many :posts, foreign_key: :author
+  has_many :comments, foreign_key: :author
+  has_many :likes, foreign_key: :author
 
   def recent_three_post
     posts.last(3)
