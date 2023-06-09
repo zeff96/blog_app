@@ -34,4 +34,8 @@ RSpec.describe Post, type: :model do
   it 'likes counter should be zero by default' do
     expect(subject.likes_counter).to eq 0
   end
+
+  it 'should update post' do
+    expect(@first_user.update_post_counter).to eq 1
+  end
 end
