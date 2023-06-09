@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :author, class_name: 'User'
-  has_many :comments, default: 0
-  has_many :likes, default: 0
+  has_many :comments
+  has_many :likes
 
   def update_post_counter
     user.increment!(:post_counter)
