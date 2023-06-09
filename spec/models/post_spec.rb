@@ -38,4 +38,14 @@ RSpec.describe Post, type: :model do
   it 'should update post' do
     expect(@first_user.update_post_counter).to eq 1
   end
+
+  it 'should have five recent comments' do
+    Comment.create(post: subject, author: @first_user, text: 'Hi Tom!' )
+    Comment.create(post: subject, author: @first_user, text: 'Hi there!' )
+    Comment.create(post: subject, author: @first_user, text: 'long time!' )
+    Comment.create(post: subject, author: @first_user, text: 'how have you been!' )
+    Comment.create(post: subject, author: @first_user, text: 'Hi Tom again!' )
+
+    expect(subject.recent_five_comments.length).to eq 5
+  end
 end
