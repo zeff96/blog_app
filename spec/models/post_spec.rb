@@ -11,4 +11,9 @@ RSpec.describe Post, type: :model do
     subject.title = nil
     expect(subject).to_not be_valid
   end
+
+  it 'title should not be too long' do
+    subject.title = 'a' * 251
+    expect(subject).to_not be_valid
+  end
 end
