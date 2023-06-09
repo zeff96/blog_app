@@ -2,23 +2,24 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :model do
   before(:example) do
-    @user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.')
-    @post = Post.create(author: first_user, title: 'Hello', text: 'This is my first post')
+    @user = User.new(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.')
+    @post = Post.new(author: @user, title: 'Hello', text: 'This is my first post')
   end
 
-  subject { Like.create(author: @user, post: @post) }
+  subject { Like.new(author: @user, post: @post) }
 
   it 'name should be present' do
-    subject.name = nil
+    subject.author = nil
     expect(subject).to_not be_valid
   end
 
   it 'title should be present' do
-    subject.title = nil
+    subject.post = nil
     expect(subject).to_not be_valid
   end
 
   it 'should update likes counter' do
-    expect(@post.update_likes_counter).to eq 1
+    subject.save
+    expect(@post.likes_counter).to eq 1
   end
 end
