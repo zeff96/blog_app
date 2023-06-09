@@ -30,4 +30,8 @@ RSpec.describe Post, type: :model do
     subject.likes_counter = -1
     expect(subject).to_not be_valid
   end
+
+  it 'likes counter should be zero by default' do
+    expect(subject.likes_counter).to eq 0
+  end
 end
