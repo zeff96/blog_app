@@ -18,4 +18,8 @@ RSpec.describe User, type: :model do
     subject.post_counter = -1
     expect(subject).to_not be_valid
   end
+
+  it 'post counter should be three' do
+    expect(subject.recent_three_post.length).to eq 3
+  end
 end
