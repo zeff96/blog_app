@@ -1,5 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:example) do
+    @user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.')
+    @post = Post.create(author: first_user, title: 'Hello', text: 'This is my first post')
+  end
+
+  subject {Like.create(author: @user, post: @post)}
+
+  it 'name should be present' do
+    subject.name = nil
+    expect(subject).to_not be_valid
+  end
 end
