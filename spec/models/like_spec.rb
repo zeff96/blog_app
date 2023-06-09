@@ -6,7 +6,7 @@ RSpec.describe Like, type: :model do
     @post = Post.create(author: first_user, title: 'Hello', text: 'This is my first post')
   end
 
-  subject {Like.create(author: @user, post: @post)}
+  subject { Like.create(author: @user, post: @post) }
 
   it 'name should be present' do
     subject.name = nil
