@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :comments, foreign_key: :author_id
   has_many :likes, foreign_key: :author_id
 
+  validates :name, presence: true
+  
+
   def recent_three_post
     posts.last(3)
   end
