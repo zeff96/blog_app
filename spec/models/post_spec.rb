@@ -21,4 +21,8 @@ RSpec.describe Post, type: :model do
     subject.comments_counter = -1
     expect(subject).to_not be_valid
   end
+
+  it 'comment counter should be zero by default' do
+    expect(subject.comments_counter).to eq 0
+  end
 end
