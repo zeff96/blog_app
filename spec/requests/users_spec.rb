@@ -30,5 +30,9 @@ RSpec.describe 'Users', type: :request do
     it 'returns succesfull response' do
       expect(response).to be_successful
     end
+
+    it 'renders correct template' do
+      expect(response).to render_template('users/index')
+    end
   end
 end
