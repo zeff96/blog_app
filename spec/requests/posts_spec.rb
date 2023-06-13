@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe PostsController, type: :controller do
+RSpec.describe 'Posts', type: :request do
   describe 'GET #index' do
-    let(:user) { User.create(name: 'John Doe') }
+    let(:user) { User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.')}
 
     before do
-      get :index, params: { user_id: user.id }
+      get "/users/#{user.id}/posts"
     end
 
     it 'returns a successful response' do
@@ -17,8 +17,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     it 'includes correct placeholder text in the response body' do
-      expect(response.body).to include('Placeholder text')
-      # Replace 'Placeholder text' with the expected text in the response body
+      expect(response.body).to include('List of all posts')
     end
   end
 
