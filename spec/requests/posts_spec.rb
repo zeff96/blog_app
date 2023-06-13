@@ -22,11 +22,11 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'GET #show' do
-    let(:user) { User.create(name: 'John Doe') }
-    let(:post) { user.posts.create(title: 'My Post', content: 'Some content') }
+    let(:user) { User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.')}
+    let(:post) { user.posts.create(title: 'My Post', text: 'Some content') }
 
     before do
-      get :show, params: { user_id: user.id, id: post.id }
+      get "/users/#{user.id}/posts/#{post.id}"
     end
 
     it 'returns a successful response' do
@@ -38,8 +38,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'includes correct placeholder text in the response body' do
-      expect(response.body).to include('Placeholder text')
-      # Replace 'Placeholder text' with the expected text in the response body
+      expect(response.body).to include('Here is a list of posts for a given user')
     end
   end
 end
