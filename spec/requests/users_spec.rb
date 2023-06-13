@@ -11,7 +11,11 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'renders index template' do
-      expect(response.body).to render_template(:index)
+      expect(response).to render_template(:index)
+    end
+
+    it 'includes correct placeholder tag on the response body' do
+      expect(response.body).to include('List of Users')
     end
   end
 end
