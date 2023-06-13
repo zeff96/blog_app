@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :request do
   describe 'GET /users' do
     before do
-      get users_path
+      get '/users'
     end
 
     it 'returns http success' do
@@ -24,7 +24,7 @@ RSpec.describe 'Users', type: :request do
     let(:user) { User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.')}
 
     before do
-      get users_path(user.id)
+      get "/users/#{user.id}"
     end
 
     it 'returns succesfull response' do
@@ -32,7 +32,11 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'renders correct template' do
-      expect(response).to render_template('users/index')
+      expect(response).to render_template(:show)
+    end
+
+    it 'includes correct placeholder tag on the response body' do
+      expect(response.body).to include('specific user')
     end
   end
 end
