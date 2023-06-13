@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  describe 'GET /index' do
+  describe 'GET /users' do
     before do
       get users_path
     end
@@ -16,6 +16,19 @@ RSpec.describe 'Users', type: :request do
 
     it 'includes correct placeholder tag on the response body' do
       expect(response.body).to include('List of Users')
+    end
+  end
+
+
+  describe 'GET /users/:id' do
+    let(:user) { User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Poland.')}
+
+    before do
+      get users_path(user.id)
+    end
+
+    it 'returns succesfull response' do
+      expect(response).to be_successful
     end
   end
 end
