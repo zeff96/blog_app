@@ -4,3 +4,5 @@
     <%= @user.bio %>
   </p>
 </div>
+
+<%= link_to 'See all posts', user_posts_path(user_id: @user.id) %>
