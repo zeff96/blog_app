@@ -1,13 +1,13 @@
-<div>
-  <h2><%= @post.title %> by <%= @post.author.name %></h2>
-  <p><%= @post.text %></p>
-  <div>
+<div class="card p-1 mb-1">
+  <p class="mb-0"><%= @post.title %> by <%= @post.author.name %></p>
+  <div class="align-self-end">
     <span>Comments: <%= @post.comments_counter %></span>,
     <span>Likes: <%= @post.likes_counter %></span>
   </div>
-  <ul>
+  <p><%= @post.text %></p>
+</div>
+  <ul class="list-unstyled">
     <% @post.comments.each do |comment| %>
       <%= render 'partials/comments', comment: comment %>
     <% end %>
   </ul>
-</div>

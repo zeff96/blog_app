@@ -1,19 +1,23 @@
 <section>
-  <%= render 'partials/users', user: @user %>
+  <div class="mb-3">
+    <%= render 'partials/users', user: @user %>
+  </div>
   <div>
-    <ul>
+    <ul class="list-unstyled">
       <% @posts.each do |post| %>
-        <%= link_to user_post_path(post.author, post) do %>
-          <%= render 'partials/posts', post: post %>
-        <% end %>
-        <ul>
-          <% post.recent_five_comments.each do |comment| %>
-            <%= render 'partials/comments', comment: comment %>
+        <li class="mb-3">
+          <%= link_to user_post_path(post.author, post), class: "nav-link" do %>
+            <%= render 'partials/posts', post: post %>
           <% end %>
-        </ul>
+          <ul class="list-unstyled">
+            <% post.recent_five_comments.each do |comment| %>
+              <%= render 'partials/comments', comment: comment %>
+            <% end %>
+          </ul>
+        </li>
       <% end %>
     </ul>
   </div>
-  <button type="button">Pagination</button>
+  <button type="button" class="btn btn-outline-dark">Pagination</button>
 </section>
 

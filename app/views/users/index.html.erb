@@ -1,7 +1,7 @@
 <ul class="list-unstyled">
   <% @users.each do |user| %>
-    <li class="card mb-3 p-3">
-      <%= link_to user_path(user) do %>
+    <li class="mb-3">
+      <%= link_to user_path(user), class: "nav-link" do %>
         <%= render 'partials/users', user: user %>
       <% end %>
     </li>

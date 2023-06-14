@@ -1,14 +1,19 @@
-<div>
-  <%= render 'partials/users', user: @user %>
-  <p>
+<div class="mb-3">
+  <div class="mb-3">
+    <%= render 'partials/users', user: @user %>
+  </div>
+  <p class="card pb-3 ps-1">
+    <span class="mb-3">Bio</span>
     <%= @user.bio %>
   </p>
 </div>
 
-<ul>
+<ul class="list-unstyled">
   <% @user.recent_three_post.each do |post| %>
-    <%= render 'partials/posts', post: post %>
+    <div class="mb-3">
+      <%= render 'partials/posts', post: post %>
+    </div>
   <% end %>
 </ul>
 
-<%= link_to 'See all posts', user_posts_path(user_id: @user.id) %>
+<%= link_to 'See all posts', user_posts_path(user_id: @user.id), class: "btn btn-outline-dark" %>
