@@ -1,6 +1,9 @@
 <div>
-<%= image_tag user.photo alt:user.name %>
-<h2>
-<%= user.name %>
-</h2>
+  <%= image_tag user.photo alt:user.name %>
+  <h2>
+    <%= user.name %>
+    <span>
+    Number of posts: <%= user.post_counter %>
+    </span>
+  </h2>
 </div>
