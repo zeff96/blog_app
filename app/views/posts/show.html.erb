@@ -1,1 +1,13 @@
-<h1>Here is a list of posts for a given user</h1>
+<div class="card p-1 mb-1">
+  <p class="mb-0"><%= @post.title %> by <%= @post.author.name %></p>
+  <div class="align-self-end">
+    <span>Comments: <%= @post.comments_counter %></span>,
+    <span>Likes: <%= @post.likes_counter %></span>
+  </div>
+  <p><%= @post.text %></p>
+</div>
+  <ul class="list-unstyled">
+    <% @post.comments.each do |comment| %>
+      <%= render 'partials/comments', comment: comment %>
+    <% end %>
+  </ul>

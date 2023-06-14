@@ -1,1 +1,23 @@
-<h1>List of all posts</h1>
+<section>
+  <div class="mb-3">
+    <%= render 'partials/users', user: @user %>
+  </div>
+  <div>
+    <ul class="list-unstyled">
+      <% @posts.each do |post| %>
+        <li class="mb-3">
+          <%= link_to user_post_path(post.author, post), class: "nav-link" do %>
+            <%= render 'partials/posts', post: post %>
+          <% end %>
+          <ul class="list-unstyled">
+            <% post.recent_five_comments.each do |comment| %>
+              <%= render 'partials/comments', comment: comment %>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <button type="button" class="btn btn-outline-dark">Pagination</button>
+</section>
+
