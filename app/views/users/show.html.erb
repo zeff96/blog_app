@@ -5,4 +5,10 @@
   </p>
 </div>
 
+<ul>
+  <% @user.recent_three_post.each do |post| %>
+    <%= render 'partials/posts', post: post %>
+  <% end %>
+</ul>
+
 <%= link_to 'See all posts', user_posts_path(user_id: @user.id) %>
