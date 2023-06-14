@@ -1,10 +1,18 @@
 <section>
   <%= render 'partials/users', user: @user %>
-  <ul>
-    <% @posts.each do |post| %>
-      <%= render 'partials/posts', post: post %>
-    <% end %>
-  </ul>
+  <div>
+    <ul>
+      <% @posts.each do |post| %>
+        <%= render 'partials/posts', post: post %>
+        <ul>
+          <% post.recent_five_comments.each do |comment| %>
+            <%= render 'partials/comments', comment: comment %>
+          <% end %>
+        </ul>
+      <% end %>
+    </ul>
+  </div>
 
   <button type="button">Pagination</button>
-<section>
+</section>
+

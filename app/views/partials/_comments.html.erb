@@ -1,8 +1,4 @@
-<ul>
-  <% post.recent_five_comments.each do |comment| %>
-    <li>
-      <span><%= render comment.author.name %></span>
-      <span><%= render comment.author.text%></span>
-    </li>
-  <% end %>
-</ul>
+<li>
+  <span><%= comment.author.name %></span>:
+  <span><%= comment.text %></span>
+</li>
