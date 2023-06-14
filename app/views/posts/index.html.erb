@@ -1,3 +1,10 @@
 <section>
   <%= render 'partials/users', user: @user %>
+  <ul>
+    <% @posts.each do |post| %>
+      <%= render 'partials/posts', post: post %>
+    <% end %>
+  </ul>
+
+  <button type="button">Pagination</button>
 <section>
