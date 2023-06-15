@@ -1,9 +1,9 @@
 <%= form_with model: [post, comment] do |form| %>
-  <div>
+  <div class="mb-3">
     <%= form.label :text %>
-    <%= form.text_area :text %>
+    <%= form.text_area :text, class: "form-control" %>
   </div>
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-outline-secondary" %>
   </div>
 <% end %>
