@@ -1,13 +1,20 @@
 <div class="card p-1 mb-1">
   <p class="mb-0"><%= @post.title %> by <%= @post.author.name %></p>
-  <div class="align-self-end">
+  <p class="text-end">
     <span>Comments: <%= @post.comments_counter %></span>,
     <span>Likes: <%= @post.likes_counter %></span>
-  </div>
+  </p>
   <p><%= @post.text %></p>
-</div>
-  <ul class="list-unstyled">
-    <% @post.comments.each do |comment| %>
-      <%= render 'partials/comments', comment: comment %>
+  <div class="align-self-end">
+    <%= form_with url: post_likes_path(@post), method: :post do |f| %>
+      <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
+      <%= f.submit "Like", class: "btn btn-outline-success" %>
     <% end %>
-  </ul>
+  </div>
+</div>
+<ul class="list-unstyled">
+  <% @post.comments.each do |comment| %>
+    <%= render 'partials/comments', comment: comment %>
+  <% end %>
+</ul>
+<%= render 'forms/comments_form', post: @post, comment: @comment%>

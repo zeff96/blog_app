@@ -1,3 +1,7 @@
+<h2>Welcome <%= @current_user.name %>!</h2>
+<div class="mb-3">
+  <%= link_to 'New post', new_post_path, class: "btn btn-outline-secondary" %>
+</div>
 <ul class="list-unstyled">
   <% @users.each do |user| %>
     <li class="mb-3">
