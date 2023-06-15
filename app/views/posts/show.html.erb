@@ -5,11 +5,12 @@
     <span>Likes: <%= @post.likes_counter %></span>
   </p>
   <p><%= @post.text %></p>
-  <%= form_with url: post_likes_path(@post), method: :post do |f| %>
-    <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
-    <%= f.submit "Like" %>
-  <% end %>
-
+  <div class="align-self-end">
+    <%= form_with url: post_likes_path(@post), method: :post do |f| %>
+      <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
+      <%= f.submit "Like", class: "btn btn-outline-success" %>
+    <% end %>
+  </div>
 </div>
 <ul class="list-unstyled">
   <% @post.comments.each do |comment| %>
