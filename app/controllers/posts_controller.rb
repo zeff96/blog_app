@@ -14,4 +14,8 @@ class PostsController < ApplicationController
     @post = @user.posts.create(post_params)
     redirect_to users_path(@user)
   end
+
+  def post_params
+    params.require(:post).permit(:title, :text)
+  end
 end
