@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts
+    @posts = Post.where(author_id: params[:user_id])
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @post = @user.posts.find(params[:id])
+    @post = Post.where(author_id: params[:user_id], id: params[:id]).first
   end
 
   def new
@@ -14,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.post.new(post_params)
+    @post = current_user.posts.new(post_params.merge(comments_counter: 0, likes_counter: 0))
     respond_to do |format|
       format.html do
         if @post.save
