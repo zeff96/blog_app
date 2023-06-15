@@ -10,8 +10,22 @@ class PostsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
-    @post = @user.posts.create!(post_params)
+    @post = Post.new
+  end
+
+  def create
+    @post = current_user.post.new(post_params)
+    respond_to do |format|
+      format.html do
+        if @post.save
+          flash[:sucess] = 'post created successfully!'
+          redirect_to user_post_path(current_user, @post)
+        else
+          flash[:error] = 'post not created!'
+          render :new, status: :unprocessable_entity
+        end
+      end
+    end
   end
 
   private
