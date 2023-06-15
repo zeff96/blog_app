@@ -1,0 +1,9 @@
+<%= form_with model: [post, comment] do |form| %>
+  <div>
+    <%= form.label :text %>
+    <%= form.text_area :text %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
