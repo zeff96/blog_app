@@ -16,4 +16,9 @@
   <% end %>
 </ul>
 
+<div class="mb-3">
+  <h2>Add a new post</h2>
+  <%= render 'forms/form'%>
+</div>
+
 <%= link_to 'See all posts', user_posts_path(@user), class: "btn btn-outline-dark" %>

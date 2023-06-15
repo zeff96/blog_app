@@ -11,9 +11,10 @@ class PostsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    @post = @user.posts.create(post_params)
-    redirect_to users_path(@user)
+    @post = @user.posts.create!(post_params)
   end
+
+  private
 
   def post_params
     params.require(:post).permit(:title, :text)
