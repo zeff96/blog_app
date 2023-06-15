@@ -5,9 +5,11 @@
     <span>Likes: <%= @post.likes_counter %></span>
   </p>
   <p><%= @post.text %></p>
+  <%= link_to 'Like', post_likes_path(@post), method: :post %>
 </div>
-  <ul class="list-unstyled">
-    <% @post.comments.each do |comment| %>
-      <%= render 'partials/comments', comment: comment %>
-    <% end %>
-  </ul>
+<ul class="list-unstyled">
+  <% @post.comments.each do |comment| %>
+    <%= render 'partials/comments', comment: comment %>
+  <% end %>
+</ul>
+<%= render 'forms/comments_form', post: @post, comment: @comment%>
