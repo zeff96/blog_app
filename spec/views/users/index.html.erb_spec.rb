@@ -7,4 +7,9 @@ RSpec.describe 'users/index.html.erb', type: :feature do
     visit '/'
     expect(page).to have_content(user.name)
   end
+
+  scenario 'display user profile picture' do
+    visit '/'
+    expect(page).to have_css("img[src='#{user.photo}']")
+  end
 end
