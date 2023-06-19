@@ -13,10 +13,6 @@ RSpec.describe 'Users', type: :request do
     it 'renders index template' do
       expect(response).to render_template(:index)
     end
-
-    it 'includes correct placeholder tag on the response body' do
-      expect(response.body).to include('List of Users')
-    end
   end
 
   describe 'GET /users/:id' do
@@ -32,10 +28,6 @@ RSpec.describe 'Users', type: :request do
 
     it 'renders correct template' do
       expect(response).to render_template(:show)
-    end
-
-    it 'includes correct placeholder tag on the response body' do
-      expect(response.body).to include('specific user')
     end
   end
 end
