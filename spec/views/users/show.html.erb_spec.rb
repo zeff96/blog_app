@@ -13,6 +13,11 @@ RSpec.describe 'user_show_page', type: :feature do
     expect(page).to have_css("img[src='#{user.photo}']")
   end
 
+  scenario 'display user bio' do
+    visit user_path(user)
+    expect(page).to have_content(user.bio)
+  end
+
   scenario 'display number of posts' do
     visit user_path(user)
     expect(page).to have_content(user.post_counter)
@@ -31,5 +36,11 @@ RSpec.describe 'user_show_page', type: :feature do
   scenario 'have a button with the text see all posts' do
     visit user_path(user)
     expect(page).to have_button('See all posts')
+  end
+
+  scenario 'when clicked redirects to posts index page' do
+    visit user_path(user)
+    click_button('See all posts')
+    expect(page).to have_content(user.name)
   end
 end
