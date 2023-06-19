@@ -27,4 +27,9 @@ RSpec.describe 'user_show_page', type: :feature do
     expect(page).to have_content(user.recent_three_post[2].title)
     expect(page).to have_content(user.recent_three_post[2].text)
   end
+
+  scenario 'have a button with the text see all posts' do
+    visit user_path(user)
+    expect(page).to have_button('See all posts')
+  end
 end
