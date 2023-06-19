@@ -10,7 +10,7 @@ FactoryBot.define do
       end
   
       after(:create) do |user, evaluator|
-        create_list(:post, evaluator.post_count, user: user)
+        create_list(:post, evaluator.post_count, author: user)
       end
     end
   end
