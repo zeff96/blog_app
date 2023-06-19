@@ -17,4 +17,10 @@ RSpec.describe 'users/index.html.erb', type: :feature do
     visit '/'
     expect(page).to have_content(user.post_counter)
   end
+
+  scenario "when clicked redirect to user's show page" do
+    visit '/'
+    click_link(href: user_path(user))
+    expect(page).to have_content('Tom')
+  end
 end
