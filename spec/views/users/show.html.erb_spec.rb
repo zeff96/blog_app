@@ -17,4 +17,14 @@ RSpec.describe 'user_show_page', type: :feature do
     visit user_path(user)
     expect(page).to have_content(user.post_counter)
   end
+
+  scenario 'display user first three posts' do
+    visit user_path(user)
+    expect(page).to have_content(user.recent_three_post[0].title)
+    expect(page).to have_content(user.recent_three_post[0].text)
+    expect(page).to have_content(user.recent_three_post[1].title)
+    expect(page).to have_content(user.recent_three_post[1].text)
+    expect(page).to have_content(user.recent_three_post[2].title)
+    expect(page).to have_content(user.recent_three_post[2].text)
+  end
 end
