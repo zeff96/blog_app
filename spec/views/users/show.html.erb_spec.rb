@@ -33,6 +33,14 @@ RSpec.describe 'user_show_page', type: :feature do
     expect(page).to have_content(user.recent_three_post[2].text)
   end
 
+  scenario 'when redirects to post show page' do
+    post = FactoryBot.create(:post, author: user)
+
+    visit user_path(user)
+    click_link(href: user_post_path(user, post))
+    expect(page).to have_content(user.name)
+  end
+
   scenario 'have a button with the text see all posts' do
     visit user_path(user)
     expect(page).to have_link('See all posts')

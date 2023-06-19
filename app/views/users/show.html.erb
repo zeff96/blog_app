@@ -11,7 +11,9 @@
 <ul class="list-unstyled">
   <% @user.recent_three_post.each do |post| %>
     <div class="mb-3">
-      <%= render 'partials/posts', post: post %>
+      <%= link_to user_post_path(@user, post) do %>
+        <%= render 'partials/posts', post: post %>
+      <% end %>
     </div>
   <% end %>
 </ul>
