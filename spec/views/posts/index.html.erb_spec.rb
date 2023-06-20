@@ -50,4 +50,9 @@ RSpec.describe 'posts/index.html.erb', type: :feature do
     click_link(href: user_post_path(post.author, post))
     expect(page).to have_content(post.author.name)
   end
+
+  scenario 'see a pagination button' do
+    visit user_posts_path(post.author)
+    expect(page).to have_button('Pagination')
+  end
 end
