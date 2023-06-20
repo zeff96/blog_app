@@ -36,8 +36,8 @@ RSpec.describe 'posts/show.html.erb', type: :feature do
 
   scenario 'display username of each commenter' do
     visit user_posts_path(post.author, post)
-    post.comments.each do |comment|
-        expect(page).to have_content("#{comment.author.name}: #{comment.text}")
+    post.comments.each do |post_comment|
+      expect(page).to have_content("#{post_comment.author.name}: #{post_comment.text}")
     end
   end
 end
