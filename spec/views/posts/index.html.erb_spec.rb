@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-post = FactoryBot.create(:post)
+post = FactoryBot.create(:post_with_comments)
 
 RSpec.describe 'posts/index.html.erb', type: :feature do
   scenario 'display user profile picture' do
@@ -26,6 +26,13 @@ RSpec.describe 'posts/index.html.erb', type: :feature do
   scenario 'display post text' do
     visit user_posts_path(post.author)
     expect(page).to have_content(post.text)
+  end
+
+  scenario 'display post first comment' do
+    comment = post.comments.first
+
+    visit user_posts_path(post.author)
+    expect(page).to have_content(comment.text)
   end
 
   scenario 'display number of comments' do
