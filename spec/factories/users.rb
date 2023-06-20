@@ -1,8 +1,10 @@
+require 'faker'
+
 FactoryBot.define do
   factory :user do
-    name { 'Tom' }
-    photo { 'https://unsplash.com/photos/F_-0BxGuVvo' }
-    bio { 'Teacher from Mexico.' }
+    name { Faker::Name.unique.name }
+    photo { Faker::Avatar.image }
+    bio { Faker::Lorem.sentence }
 
     factory :user_with_posts do
       transient do
