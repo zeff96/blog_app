@@ -6,9 +6,9 @@ FactoryBot.define do
 
     factory :user_with_posts do
       transient do
-        post_count {3}
+        post_count { 3 }
       end
-  
+
       after(:create) do |user, evaluator|
         create_list(:post, evaluator.post_count, author: user)
       end
@@ -22,5 +22,6 @@ FactoryBot.define do
     text { 'this is my first post' }
     comments_counter { 0 }
     likes_counter { 0 }
+    author { create(:user_with_posts) }
   end
 end
