@@ -1,17 +1,17 @@
 <div class="d-flex align-items-center gap-3">
   <div style="width: 70px">
     <% if user.photo.present? %>
-      <%= image_tag user.photo, alt: user.name, class: "border border-2 p-2 img-fluid" %>
+      <%= image_tag user.photo, alt: user.name, class: "border border-2 rounded p-2 img-fluid" %>
     <% else %>
-      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png", alt: user.name, class: "border border-2 p-2 img-fluid" %>
+      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png", alt: user.name, class: "border border-2 rounded rounded-circle p-2 img-fluid" %>
     <% end %>
   </div>
-  <h2 class="card flex-fill p-3">
+  <div class="card flex-fill p-1">
     <span class="d-block">
-      <%= link_to user.name, user, class: 'nav-link', 'data-user-id': 'users' %>
+      <%= link_to user.name, user, class: 'nav-link fw-bold fs-5', 'data-user-id': 'users' %>
     </span>
     <span class="text-end fs-6">
-    Number of posts: <%= user.post_counter %>
+      Number of posts: <%= user.post_counter %>
     </span>
-  </h2>
+  </div>
 </div>
