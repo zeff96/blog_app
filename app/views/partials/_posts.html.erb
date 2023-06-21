@@ -1,5 +1,7 @@
 <li class="card p-1">
-  <span><%= link_to post.title, user_post_path(@user, post) %></span>
+  <span>
+    <%= link_to post.title, user_post_path(@user, post), class: 'text-decoration-none' %>
+  </span>
   <span><%= post.text %></span>
   <span class="text-end">
     <span>Comments: <%= post.comments_counter %></span>,
