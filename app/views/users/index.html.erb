@@ -1,7 +1,7 @@
 <div class="mb-3">
   <h2>Welcome <%= @current_user.name %>!</h2>
   <% if user_signed_in? %>
-    <%= button 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
+    <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
   <% end %>
 </div>
 <div class="mb-3">
