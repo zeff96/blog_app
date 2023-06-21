@@ -1,4 +1,12 @@
-<li class="border border-1 p-1 rounded mb-1">
-  <span><%= comment.author.name %></span>:
-  <span><%= comment.text %></span>
+<li class="border border-1 p-1 rounded mb-1 d-flex justify-content-between">
+  <div>
+    <span><%= comment.author.name %></span>:
+    <span><%= comment.text %></span>
+  </div>
+  <div>
+    <%= link_to 'delete', [current_user, @post, comment], data: {
+      turbo_method: :delete,
+      turbo_confirm: 'Are you sure!'
+    }, class: 'btn btn-danger btn-sm' %>
+  </div>
 </li>

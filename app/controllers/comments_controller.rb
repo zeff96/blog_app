@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   load_and_authorize_resource
   
   def create
+    post = Post.find(params[:post_id])
+    @comment = post.comments.new(author: current_user, **comment_params)
     if @comment.save
       flash[:notice] = 'Comment created succesfully!'
       redirect_to user_post_path(current_user, post)
@@ -20,7 +22,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def comment_param
+  def comment_params
     params.require(:comment).permit(:text)
   end
 end
