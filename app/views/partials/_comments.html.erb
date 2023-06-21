@@ -4,9 +4,12 @@
     <span><%= comment.text %></span>
   </div>
   <div>
-    <%= link_to 'delete', [current_user, @post, comment], data: {
-      turbo_method: :delete,
-      turbo_confirm: 'Are you sure!'
-    }, class: 'btn btn-danger btn-sm' %>
+    <% if can? :destroy, comment %>
+      <%= link_to 'delete', [current_user, @post, comment], data: {
+        turbo_method: :delete,
+        turbo_confirm: 'Are you sure!'
+        }, class: 'btn btn-danger btn-sm' 
+      %>
+    <% end %>
   </div>
 </li>
