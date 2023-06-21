@@ -10,5 +10,5 @@
   <%= link_to 'delete', user_posts_path(post.author, post), data: {
     turbo_method: :delete,
     turbo_confirm: 'Are you sure'
-  } %>
+  }, class: 'btn btn-outline-danger btn-sm align-self-start' %>
 </li>
