@@ -1,4 +1,4 @@
-<div class="mb-3">
+<div class="mb-3 d-flex align-items-center justify-content-between">
   <h2>Welcome <%= @current_user.name %>!</h2>
   <% if user_signed_in? %>
     <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger btn-sm' %>
