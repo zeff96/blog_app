@@ -1,17 +1,21 @@
-<div class="card p-1 mb-1">
-  <p class="mb-0"><%= @post.title %> by <%= @post.author.name %></p>
-  <p class="text-end">
-    <span>Comments: <%= @post.comments_counter %></span>,
-    <span>Likes: <%= @post.likes_counter %></span>
-  </p>
-  <p><%= @post.text %></p>
-  <div class="align-self-end">
-    <%= form_with url: user_post_likes_path(current_user, @post), method: :post do |f| %>
-      <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
-      <%= f.submit "Like", class: "btn btn-outline-success" %>
-    <% end %>
+<% if @post %>
+  <div class="card p-1 mb-1">
+    <p class="mb-0"><%= @post.title %> by <%= @post.author.name %></p>
+    <p class="text-end">
+      <span>Comments: <%= @post.comments_counter %></span>,
+      <span>Likes: <%= @post.likes_counter %></span>
+    </p>
+    <p><%= @post.text %></p>
+    <div class="align-self-end">
+      <%= form_with url: user_post_likes_path(current_user, @post), method: :post do |f| %>
+        <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
+        <%= f.submit "Like", class: "btn btn-outline-success" %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <%= flash[:alert] %>
+<% end %>
 <ul class="list-unstyled">
   <% @post.comments.each do |comment| %>
     <%= render 'partials/comments', comment: comment %>
