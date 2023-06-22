@@ -5,7 +5,7 @@
   </div>
   <div>
     <% if can? :destroy, comment %>
-      <%= link_to 'delete', [current_user, @post, comment], data: {
+      <%= link_to 'delete', polymorphic_url([comment.post.author, comment.post, comment]), data: {
         turbo_method: :delete,
         turbo_confirm: 'Are you sure!'
         }, class: 'btn btn-danger btn-sm' 
