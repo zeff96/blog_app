@@ -16,12 +16,14 @@ class CommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
     @comment = post.comments.new(author: current_user, **comment_params)
-    if @comment.save
-      flash[:notice] = 'Comment created succesfully!'
-      redirect_to user_post_path(post.author, post)
-    else
-      flash[:alert] = 'Comment creation failed!'
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to user_post_path(post.author, post), notice: 'Comment was successfully created.' }
+        format.json { render :show, status: :created, location: @comment }
+      else
+        format.html { redirect_to user_post_path(post.author, post), notice: 'Comment was not created.' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
