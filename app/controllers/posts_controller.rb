@@ -5,7 +5,10 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @posts = Post.includes(:author, :comments).where(author_id: params[:user_id])
 
-    render json: @posts
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
   def show
