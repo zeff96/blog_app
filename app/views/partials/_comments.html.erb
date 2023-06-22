@@ -1,4 +1,15 @@
-<li class="border border-1 p-1 rounded mb-1">
-  <span><%= comment.author.name %></span>:
-  <span><%= comment.text %></span>
+<li class="border border-1 p-1 rounded mb-1 d-flex justify-content-between">
+  <div>
+    <span><%= comment.author.name %></span>:
+    <span><%= comment.text %></span>
+  </div>
+  <div>
+    <% if can? :destroy, comment %>
+      <%= link_to 'delete', polymorphic_url([comment.post.author, comment.post, comment]), data: {
+        turbo_method: :delete,
+        turbo_confirm: 'Are you sure!'
+        }, class: 'btn btn-danger btn-sm' 
+      %>
+    <% end %>
+  </div>
 </li>

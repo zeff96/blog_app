@@ -1,8 +1,16 @@
 <li class="card p-1">
-  <p><%= post.title %></p>
-  <p><%= post.text %></p>
-  <p class="text-end">
+  <span>
+    <%= link_to post.title, user_post_path(@user, post), class: 'text-decoration-none' %>
+  </span>
+  <span><%= post.text %></span>
+  <span class="text-end">
     <span>Comments: <%= post.comments_counter %></span>,
     <span>Likes: <%= post.likes_counter %></span>
-  </p>
+  </span>
+  <% if can? :destroy, post %>
+    <%= link_to 'delete',polymorphic_url([post.author, post]), data: {
+      turbo_method: :delete,
+      turbo_confirm: 'Are you sure'
+    }, class: 'btn btn-outline-danger btn-sm align-self-start' %>
+  <% end %>
 </li>
