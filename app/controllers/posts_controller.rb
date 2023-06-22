@@ -7,9 +7,16 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:author, :comments, :likes).where(author_id: params[:user_id], id: params[:id]).first
-    @comment = Comment.new
-    @like = Like.new
+    @user = User.find(params[:user_id])
+    @post = Post.includes(:author, :comments, :likes).find_by(author_id: @user.id, id: params[:id])
+
+    if @post
+      @comment = Comment.new
+      @like = Like.new
+    else
+      flash[:alert] = 'Post not found!'
+      redirect_to user_post_path(@user, params[:id])
+    end
   end
 
   def new
