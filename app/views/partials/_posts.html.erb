@@ -8,7 +8,7 @@
     <span>Likes: <%= post.likes_counter %></span>
   </span>
   <% if can? :destroy, post %>
-    <%= link_to 'delete',[post.author, post], data: {
+    <%= link_to 'delete',polymorphic_url([post.author, post]), data: {
       turbo_method: :delete,
       turbo_confirm: 'Are you sure'
     }, class: 'btn btn-outline-danger btn-sm align-self-start' %>
