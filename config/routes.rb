@@ -16,11 +16,11 @@ Rails.application.routes.draw do
       resources :comments
       resources :likes, only: [:create]
     end
-  end
 
-  namespace :api do
-    resources :posts, only: [:index] do
-      resources :comments, only: [:index, :create]
+    namespace :api do
+      resources :posts, only: [:index] do
+        resources :comments, only: [:index, :create]
+      end
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
