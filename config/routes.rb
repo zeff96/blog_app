@@ -5,21 +5,23 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'users#index', as: :authenticated_root
     end
-  
+
     unauthenticated :user do
       root to: 'devise/sessions#new', as: :unauthenticated_root
     end
   end
 
-  resources :users, only: [:index, :show] do
+  resources :users, only: %i[index show] do
     resources :posts do
       resources :comments
       resources :likes, only: [:create]
     end
+  end
 
-    namespace :api do
+  namespace :api do
+    resources :users, only: [:index] do
       resources :posts, only: [:index] do
-        resources :comments, only: [:index, :create]
+        resources :comments, only: %i[index create]
       end
     end
   end
